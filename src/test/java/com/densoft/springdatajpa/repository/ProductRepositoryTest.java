@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +34,28 @@ class ProductRepositoryTest {
         //display product info
         System.out.println(savedProduct.getId());
         System.out.println(savedProduct);
+    }
+
+    @Test
+    void populateDb() {
+        int i = 1;
+        while (i <= 50) {
+            //create product
+            Product product = new Product();
+            product.setName("Product " + i);
+            product.setDescription("Product " + i + " desc");
+            product.setSku("100" + i);
+            Random random = new Random();
+            int value = random.nextInt(1000) + 10;
+            product.setPrice(new BigDecimal(Math.round(value * 100 / 100)));
+            product.setActive(true);
+            product.setImageUrl("product-" + i + "jpg");
+
+            //save product
+            System.out.println(product);
+            productRepository.save(product);
+            i++;
+        }
     }
 
     @Test
