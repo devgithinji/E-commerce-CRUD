@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 
 @SpringBootTest
-public class OneToOneUnidirectionalMapping {
+public class OneToOneUnidirectionalMappingTest {
 
     @Autowired
     private OrderRepository orderRepository;
@@ -42,7 +42,7 @@ public class OneToOneUnidirectionalMapping {
 
     @Test
     void updateOrderMethod() {
-        Order order = orderRepository.findById(1L).get();
+        Order order = orderRepository.findById(2L).get();
         order.setStatus("DELIVERED");
         order.getBillingAddress().setZipCode("411048");
         orderRepository.save(order);
